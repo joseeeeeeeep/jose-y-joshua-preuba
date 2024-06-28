@@ -1,0 +1,78 @@
+import csv
+note=[]
+def prestar():
+    nombre=input("Ingrese su nombre y apellido: ")
+    #if 7>rut  10<rut.len():
+    #    print("rut no valido")
+    try:
+        rut=int(input("Ingrese su rut: "))
+        numero=int(input("Seleccione el numero de su computador del 1-30: "))
+        if numero>30:
+            print("Ingrese numero valido....")
+            print("reinicieeeee")
+        documento=int(input("Seleccione que documento desea mostrar  1.- Carnet    2.-Pase escolar "))
+        if documento==1:
+            documento="Carnet"
+        elif documento==2:
+            documento="Pase escolar"
+
+        notes={
+            "rut": rut,
+            "Nombre del alumno": nombre,
+            "Documento seleccionado": documento,#"\n"
+            "Numero de computador": numero,
+        }
+        note.append(notes)
+    except ValueError:
+        print("Ingrese un digito valido...")
+print(note)
+
+
+def imprimir():
+    with open("Pablo Saldaña BIY1101-008D.csv", "w") as archivo:
+        for i in archivo:
+            archivo.write(f"{i}.{note}") 
+        
+def devolver():
+    idx=int(input("ingrese cual desea eliminar"))-1
+    if 0<=idx<len(note):
+        note.pop(idx)
+    #    r=input("indique su rut")
+#    if r==rut:
+#        remove(r)
+#    if rut in prestados:
+#        del prestados[rut]
+#        print(f"notebooks numero{numero}devuelto por rut: {rut}")
+#    else:
+#        print("rut no encontrado")
+    
+def modificar():
+    devolver()
+    prestar()
+
+    
+def menu():
+    while True:
+        try:
+            print("Bienvenido a la sala 021")
+            print("1.- Prestar notebooks")
+            print("2.- Devolver notebooks")
+            print("3.- Modificar prestamo de notebooks (Por falla o bateria agotada)")
+            print("4.- Imprimir la lista de notebooks prestados")
+            print("5.- Terminar clase")
+            print(note)
+
+            opcion=int(input("Seleccione una opcion: "))
+            if opcion==1:
+                prestar()
+            elif opcion==2:
+                devolver()
+            elif opcion==3:
+                modificar()
+            elif opcion==4:
+                imprimir()
+            elif opcion==5:
+                break
+        except ValueError:
+            print("Ingrese digito valido...")   
+menu()
